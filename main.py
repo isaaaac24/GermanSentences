@@ -1,8 +1,9 @@
-import sentencesplit
+import sentencesplit, wordsearch
 
 menu_options = {
     1: 'Split file into sentences',
-    2: 'Exit',
+    2: 'Find a sentence containing a word',
+    3: 'Exit',
 }
 
 def print_options():
@@ -12,6 +13,9 @@ def print_options():
 def option1():
     sentencesplit.split_file()
 
+def option2():
+    wordsearch.search_word()
+
 if __name__=='__main__':
     print("Hello, welcome to LangIO")
     while True:
@@ -19,7 +23,9 @@ if __name__=='__main__':
         option = int(input("Enter your choice\n"))
         if option == 1:
             option1()
-        elif option == 2:
+        if option == 2:
+            option2()
+        elif option == 3:
             print('Thank you for using LangIO!')
             exit()
         else:
