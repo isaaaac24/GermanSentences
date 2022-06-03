@@ -1,18 +1,26 @@
-from __future__ import print_function
-import re
-import nltk.tokenize
+import sentencesplit
 
-finpath = input("Input the exact path of the file which you would like to split into sentences: ")
-fin = open(finpath, 'r', encoding='utf-8')
-data = fin.read()
-foutpath = input("Input the name of the file which you would like the sentences to be split into: ")
-fout = open(foutpath, 'w', encoding='utf-8')
+menu_options = {
+    1: 'Split file into sentences',
+    2: 'Exit',
+}
 
-sentences = nltk.tokenize.sent_tokenize(data)
+def print_options():
+    for key in menu_options.keys():
+        print(key, '--', menu_options[key])
 
-for s in sentences:
-    s = re.sub('\s+',' ', s)
-    fout.write(s + '\n')
+def option1():
+    sentencesplit.split_file()
 
-fin.close()
-fout.close()
+if __name__=='__main__':
+    print("Hello, welcome to LangIO")
+    while True:
+        print_options()
+        option = int(input("Enter your choice\n"))
+        if option == 1:
+            option1()
+        elif option == 2:
+            print('Thank you for using LangIO!')
+            exit()
+        else:
+            print('Invalid option. Please enter a number between 1 and 4.')
