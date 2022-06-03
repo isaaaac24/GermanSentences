@@ -2,9 +2,11 @@ from __future__ import print_function
 import re
 import nltk.tokenize
 
-fin = open("EG 273 - German only.txt", 'r', encoding='utf-8')
+finpath = input("Input the exact path of the file which you would like to split into sentences: ")
+fin = open(finpath, 'r', encoding='utf-8')
 data = fin.read()
-fout = open("sentences.txt", 'w', encoding='utf-8')
+foutpath = input("Input the name of the file which you would like the sentences to be split into: ")
+fout = open(foutpath, 'w', encoding='utf-8')
 
 sentences = nltk.tokenize.sent_tokenize(data)
 
