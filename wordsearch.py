@@ -1,3 +1,6 @@
+from main import session
+from models import Sentence
+
 user_filter = {
     "num_words": 0
 }
@@ -5,44 +8,31 @@ user_filter = {
 
 def search_word(option):
     search_term = input("Input the word you would like to search for\n")
-    fpath = input("Input the address of the file you would like to search")
-    f = open(fpath, 'r', encoding='utf-8')
     if option == 1:
-        sen_all = find_all(search_term, f)
-        for sen in sen_all:
-            print(sen)
+        find_all(search_term)
     elif option == 2:
-        print(first_sen(search_term, f))
+        first_sen(search_term)
     elif option == 3:
-        sen_all = find_all(search_term, f)
-        min_words = input("What is the minimum length of your sentence?\n")
-        num_sen = input("How many sentences would you like?\n")
-        results = (custom_search(sen_all, min_words, num_sen))
-        for sen in results:
-            print(sen)
+        custom_search(search_term)
 
 
-def find_all(search_term, f):
-    sen_all = []
-    for line in f:
-        if search_term in line:
-            sen_all.append(line)
-    return sen_all
-
-
-def first_sen(search_term, f):
-    for line in f:
-        if search_term in line:
-            return line
-
-
-def custom_search(sen_all, min_words, num_sen):
-    user_filter["num_words"] = min_words
-    results = []
+def find_all(search_term):
+    sen_all = session.query(Sentence).filter(Sentence.sentence.contains(search_term)).all()
     for sen in sen_all:
-        word_list = sen.split()
-        if (len(word_list) > int(min_words)):
-            results.append(sen)
-        if len(results) == int(num_sen):
-            return results
-    return results
+        print(sen.sentence)
+
+
+def first_sen(search_term):
+    sen = session.query(Sentence).filter(Sentence.sentence.contains(search_term)).first()
+    print(sen.sentence)
+
+
+def custom_search(search_term):
+    word_count = int(input("What is the minimum amount of words in the sentence?"))
+    query = session.query(Sentence).filter(
+        Sentence.word_count >= word_count,
+        Sentence.sentence.contains(search_term)
+    ).all()
+
+    for sen in query:
+        print(sen.sentence)

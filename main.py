@@ -1,3 +1,17 @@
+# import database items
+from sqlalchemy.ext.declarative import declarative_base
+from sqlalchemy.orm import sessionmaker
+import sqlalchemy as db
+
+# database
+engine = db.create_engine('mysql://root:Wrightson6534@localhost:3306/sentences')
+Session = sessionmaker(bind=engine)
+session = Session()
+Base = declarative_base()
+
+# create database
+#Base.metadata.create_all(engine)
+
 import sentencesplit, wordsearch
 
 menu_options = {
@@ -29,15 +43,23 @@ def option2():
         option = int(input("Enter your choice\n"))
         if option == 1:
             wordsearch.search_word(option)
-        if option == 2:
+            op_status = True
+        elif option == 2:
             wordsearch.search_word(option)
-        if option == 3:
+            op_status = True
+        elif option == 3:
             wordsearch.search_word(option)
+            op_status = True
         elif option == 4:
             print('Thank you for using LangIO!')
             exit()
         else:
             print('Invalid option. Please enter a number between 1 and 4.')
+            continue
+
+        if op_status == True:
+            print("Hello, welcome to LangIO")
+            break
 
 
 if __name__=='__main__':
@@ -47,7 +69,7 @@ if __name__=='__main__':
         option = int(input("Enter your choice\n"))
         if option == 1:
             option1()
-        if option == 2:
+        elif option == 2:
             option2()
         elif option == 3:
             print('Thank you for using LangIO!')
