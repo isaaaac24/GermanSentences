@@ -2,6 +2,7 @@ from main import Base
 from sqlalchemy import Column, Integer, String
 
 
+# sentence class for sentences stored in sentences database
 class Sentence(Base):
     __tablename__ = 'sentences'
 
