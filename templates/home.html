@@ -1,7 +1,25 @@
+<!DOCTYPE html>
 {% extends "base.html" %}
 
 {% block content %}
 
-    <h1 class="title is-1">Sentence</h1>
+  <h1 class="title is-1">Welcome to my sentence finder!</h1>
+  <h1>What would you like to do?</h1>
+  <div class="columns is-centered">
+    <div class="column is-4">
+      <div class="field is-grouped is-vcentered">
+        <p class="control" href="{{ url_for('home') }}">
+          <a href="{{ url_for('split.split') }}" class="button">
+             Split a file
+          </a>
+        </p>
+        <p class="control">
+          <a href="{{ url_for('search.search') }}" class="button">
+             Search for a word
+          </a>
+        </p>
+      </div>
+    </div>
+  </div>
 
 {% endblock %}

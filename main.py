@@ -24,4 +24,10 @@ def home():
 
 # main function, displays main menu
 if __name__ == '__main__':
+    from split.views import split_bp
+    from search.views import search_bp
+
+    app.register_blueprint(split_bp)
+    app.register_blueprint(search_bp)
     app.run(debug=True)
+
