@@ -2,17 +2,6 @@ from main import session
 from models import Sentence
 
 
-# search menu
-def search_word(option):
-    search_term = input("Input the word you would like to search for\n")
-    if option == 1:
-        find_all(search_term)
-    elif option == 2:
-        first_sen(search_term)
-    elif option == 3:
-        custom_search(search_term)
-
-
 # find all sentences that contain the user specified word
 def find_all(search_term):
     sen_all = session.query(Sentence).filter(Sentence.sentence.contains(search_term)).all()
