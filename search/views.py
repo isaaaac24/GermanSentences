@@ -14,7 +14,7 @@ def search():
     form = SearchForm()
 
     if request.method == "POST":
-        sen_all = session.query(Sentence).filter(Sentence.sentence.contains(form.search_term.data)).all()
+        sen_all = session.query(Sentence).filter(Sentence.sentence.op('regexp')(r'\b{}\b'.format(form.search_term.data))).all()
         return render_template('search.html', form=form, sentences=sen_all)
 
     return render_template('search.html', form=form)
