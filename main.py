@@ -1,3 +1,5 @@
+import os
+
 import sqlalchemy as db
 from flask import Flask, render_template
 from sqlalchemy.ext.declarative import declarative_base
@@ -11,6 +13,11 @@ Base = declarative_base()
 
 # flask
 app = Flask(__name__)
+
+#establish secret key
+SECRET_KEY = os.urandom(32)
+app.config['SECRET_KEY'] = SECRET_KEY
+
 
 # create database
 # Base.metadata.create_all(engine)
