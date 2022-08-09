@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+{% extends "base.html" %}
+
+{% block content %}
+
+  <h1 class="title is-1">Process a Reddit thread</h1>
+  <h1>Please upload the file you would like to split</h1>
+  <div class="column">
+    <form method="POST">
+      <div class="field has-addons">
+        <div class="control">
+          {{ form.search_term(class="input", placeholder="Input URL") }}
+        </div>
+        <div class="control">
+          {{ form.submit(class="button is-info is-centered") }}
+        </div>
+      </div>
+    </form>
+  </div>
+  <table style="width:100%", border="1">
+      {% for comment in comments %}
+      <tr>
+          <td>{{comment.body}}</td>
+      </tr>
+      {% endfor %}
+  </table>
+
+
+{% endblock %}
