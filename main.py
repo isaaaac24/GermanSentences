@@ -6,7 +6,7 @@ from sqlalchemy.ext.declarative import declarative_base
 from sqlalchemy.orm import sessionmaker
 
 # database
-engine = db.create_engine('mysql://root:Wrightson6534@localhost:3306/sentences')
+engine = db.create_engine('mysql://root:Password123_@localhost:3306/sentences')
 Session = sessionmaker(bind=engine)
 session = Session()
 Base = declarative_base()
