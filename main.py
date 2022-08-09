@@ -1,4 +1,3 @@
-# import database items
 import sqlalchemy as db
 from flask import Flask, render_template
 from sqlalchemy.ext.declarative import declarative_base
